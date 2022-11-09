@@ -88,6 +88,6 @@ Examples for collecting DFT features using the terminal command line. Requires `
 ```
 
 ## Examples on Jupyter Notebook
-See the Collecting_DFT-features.ipynb within the Example_jupyter-notebook directory. 
+See the Collecting_DFT-features.ipynb within the [Example_jupyter-notebook](https://github.com/Liliana-Gallegos/DISCO/tree/master/Example_jupyter-notebook) directory. 
 
 
