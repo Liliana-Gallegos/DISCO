@@ -1,0 +1,6 @@
+﻿Name,Smile,Bond
+mol1,ClC1=CC=[N+]([Zn-](Cl)Cl)C=C1,"Cl,C"
+mol2,Cc1cc(Br)ccc1,"Br,C"
+mol3,CNc1ccncc1,"N,H"
+mol4,O=C1CNCCN1,"N,H"
+mol5,Cl[Pd]1(Cl)[P+](c2ccccc2)(c2ccccc2)c2ccc3ccccc3c2-c2c(ccc3ccccc23)[P+]1(c1ccccc1)c1ccccc1,"Pd,P"
