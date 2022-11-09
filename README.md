@@ -71,7 +71,7 @@ Examples for collecting DFT features using the terminal command line. Requires `
      HOMO and LUMO = [-0.3698] and [-0.017]
 ```
 
-5. Bond distance for single C-Cl bond occurance :
+5. Bond distance for single C-Cl bond occurance:
 ```
 >>>python DISCO.py mol1-Cl_NBO.log --distance 'C,Cl' --verbose
 
@@ -79,7 +79,18 @@ Examples for collecting DFT features using the terminal command line. Requires `
      Bond Distance: [['3C', '11Cl']] = [1.7322] 
 ```
 
-6. Bond distance on .xyz file:
+6. Bond distance for multiple N-H bond occurance:
+```
+>>>python DISCO.py mol3-N_NMR.log mol4-2N_NMR.log --distance 'N,H' --verbose
+   o Running: mol3-N_NMR.log
+     Bond Distance: [['1N', '11H']] = [1.00521]
+     
+   o Running: mol4-2N_NMR.log
+     Bond Distance: [['3N', '8H'], ['6N', '15H']] = [1.00876, 1.01189]
+```
+
+
+7. Bond distance on .xyz file:
 ```
 >>>python DISCO.py mol2-Br_NBO.xyz --distance 'Br,C' --verbose
 
