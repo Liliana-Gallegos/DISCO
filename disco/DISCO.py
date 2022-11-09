@@ -51,19 +51,24 @@ class disco:
             atoms, numbers, shielding_tensor = nmr_shielding(file)
 
             #### Scale Factor
-            if options.scale != False: intercept, slope = options.scale.split(',')
+            if options.scale != False:
+                intercept, slope = float(options.scale.split(',')[0]), float(options.scale.split(',')[1])
+
             elements = options.nmr
             el = re.split('(\d+)', elements)
             if len(el) == 1:
                 atom_i = [ i for i, a in enumerate(atoms) if a == elements ]
                 for j in atom_i:
-                    if options.scale != False: shielding_tensor = scale_chem_shift(float(slope), float(intercept), shielding_tensor[j])
-                    else: shielding_tensor = shielding_tensor[j]
-                    nmr_list.append(round(shielding_tensor, 4))
-                    num_element_list.append(str(numbers[j]+atoms[j]))
+                    if options.scale != False:
+                        chemical_shift = scale_chem_shift(slope, intercept, shielding_tensor[j])
+                        nmr_list.append(round(chemical_shift, 4))
+                        num_element_list.append(str(numbers[j]+atoms[j]))
+                    else:
+                        nmr_list.append(round(shielding_tensor[j], 4))
+                        num_element_list.append(str(numbers[j]+atoms[j]))
             else:
                 j = numbers.index(el[1])
-                if options.scale != False: shielding_tensor = scale_chem_shift(float(slope), float(intercept), shielding_tensor[j])
+                if options.scale != False: shielding_tensor = scale_chem_shift(slope, intercept, shielding_tensor[j])
                 else: shielding_tensor = shielding_tensor[j]
                 nmr_list.append(round(shielding_tensor, 4))
                 num_element_list.append(str(numbers[j]+atoms[j]))
