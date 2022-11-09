@@ -204,10 +204,10 @@ def scale_chem_shift(slope, intercept, nmr_isotropic):
     """
     Utlizing input scaled factors (slope and intercept) to compute and return scaled chemical shifts.
     """
-    # new_chem_shift = (intercept-nmr_isotropic)/(-slope)
-    new_chem_shift = intercept+(slope*nmr_isotropic)
+    new_chem_shift = (intercept-nmr_isotropic)/(-slope)
+    #new_chem_shift = intercept+(slope*nmr_isotropic)
     return new_chem_shift
-    
+
 
 def atom_charge(file):
     """
