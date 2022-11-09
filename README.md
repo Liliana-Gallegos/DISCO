@@ -101,4 +101,20 @@ Examples for collecting DFT features using the terminal command line. Requires `
 ## Examples on Jupyter Notebook
 See the Collecting_DFT-features.ipynb within the [Example_jupyter-notebook](https://github.com/Liliana-Gallegos/DISCO/tree/master/Example_jupyter-notebook) directory. 
 
+To run in a Jupyter Notebook import: `import DISCO as cd` 
+```
+    import DISCO as cd
+    
+    #Create DISCO object
+    mol = cd.disco(file, distance='atom1,atom2', charge=atom, nmr=atom, scale='intercept,slope', mo=True, verbose=True)
+    
+    #Grab DFT Parameters
+    charge = mol.Chrg
+    nmr    = mol.NMR
+    distance = mol.Dist
+    atom_index = mol.Atom
+    homo = mol.HOMO
+    lumo = mol.LUMO
+   
+```
 
