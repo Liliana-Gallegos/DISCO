@@ -81,7 +81,7 @@ Examples for collecting DFT features using the terminal command line. Requires `
 >>>python DISCO.py mol1-Cl_NMR.log --nmr C --scale '185.6667,-1.0303' --verbose
 
    o Running: mol1-Cl_NMR.log
-     Atomic NMR Values: ['1C', '2C', '3C', '4C', '5C'] = [152.5072, 126.647, 160.4979, 126.6472, 152.5091]
+     Atomic NMR Values: ['1C', '2C', '3C', '4C', '5C'] = [148.9686, 124.6071, 156.4963, 124.6073, 148.9704]
 ```
 
 4. HOMO and LUMO molecular orbital values:
