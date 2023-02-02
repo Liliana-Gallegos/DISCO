@@ -27,17 +27,18 @@ class disco:
             atoms, numbers, natural_charges = atom_charge(file)
 
             elements = options.charge
-            el = re.split('(\d+)', elements)
-            #### parse by element
-            if len(el) == 1:
-                atom_i = [ i for i, a in enumerate(atoms) if a == elements ]
-                for j in atom_i:
+            for e in elements.split(','):
+                el = re.split('(\d+)', e)
+                #### parse by element
+                if len(el) == 1:
+                    atom_i = [ i for i, a in enumerate(atoms) if a == e ]
+                    for j in atom_i:
+                        charge_list.append(round(natural_charges[j], 5))
+                        num_element_list.append(str(numbers[j]+atoms[j]))
+                else:
+                    j = numbers.index(el[1]) # find by atom number
                     charge_list.append(round(natural_charges[j], 5))
                     num_element_list.append(str(numbers[j]+atoms[j]))
-            else:
-                j = numbers.index(el[1]) # find by atom number
-                charge_list.append(round(natural_charges[j], 5))
-                num_element_list.append(str(numbers[j]+atoms[j]))
 
         #### Molecular Orbitals: HOMO/LUMO values
         homo_list, lumo_list = [], []
@@ -156,6 +157,7 @@ def main():
             except IndexError: pass
     if len(files) == 0: sys.exit("    Please specify a valid input file and try again.")
 
+    mult_csv = []
     for file in files:
         if options.verbose != False: print('\no Running:', file)
         feats = disco(file, options=options)
@@ -166,7 +168,9 @@ def main():
             csv_name = options.csv
             csv_dict['Name'] = [file]
             if options.charge != False:
-                for a, b in zip(feats.Atom, feats.Chrg): csv_dict[a+' charge'] = [b]
+                for i, a, b in zip(options.charge.split(','), feats.Atom, feats.Chrg):
+                    csv_dict[i+' atom index'] = [a]
+                    csv_dict[i+' charge'] = [b]
             if options.mo != False:
                 csv_dict['HOMO'] = [feats.HOMO[0]]
                 csv_dict['LUMO'] = [feats.LUMO[0]]
@@ -175,10 +179,16 @@ def main():
             if options.distance != False:
                 for a, b in zip(feats.Bonded_atoms, feats.Dist): csv_dict[str(a[0]+'-'+a[1]+' length')] = [b]
         csv_df = pd.DataFrame(csv_dict)
-        #### write to csv
-        if options.csv != False:
-            print('o Disco DFT features: \n', csv_df)
-            csv_df.to_csv(f'{csv_name}_disco.csv', index=False)
+        mult_csv.append(csv_df)
+    #### combine all csv
+    mult_dict = {}
+    for k in csv_dict.keys(): mult_dict[k] = np.concatenate(list(d[k] for d in mult_csv))
+    mult_df = pd.DataFrame(mult_dict)
+    #### write to csv
+    if options.csv != False:
+        if len(files) > 1: csv_df = mult_df; print('o Disco DFT features: \n', mult_df)
+        else: print('o Disco DFT features: \n', csv_df)
+        csv_df.to_csv(f'{csv_name}_disco.csv', index=False)
 
 if __name__ == "__main__":
     main()
