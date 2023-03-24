@@ -114,7 +114,7 @@ Examples for collecting DFT features using the terminal command line. Requires `
 
 8. Tabulate all data into dataframe (csv) by adding `--csv [filename]`.
 
-* Example 1 - Specified by nitrogen atom `--charge N`: Tabulates by the first N atom.ex1_data.csv gets saved in the working folder.
+* Example 1 - Specified by nitrogen atom `--charge N`: Tabulates by the first N atom. Dataframe, ex1_data.csv, gets saved in the working folder.
 ```
 >>>python DISCO.py mol*N_*NBO.log --charge N --verbose --csv ex1_data 
 
@@ -129,7 +129,7 @@ o Disco DFT features:
 1  mol4-2N_NBO.log           3N  -0.64365
 ```
 
-* Example 2 - Specified by indexed atom `--charge 3`: Tabulates by the specified indexed atom. ex2_data.csv gets saved in the working folder.
+* Example 2 - Specified by indexed atom `--charge 3`: Tabulates by the specified indexed atom. Dataframe, ex2_data.csv, gets saved in the working folder.
 ```
 >>>python DISCO.py mol1-Cl_NBO.log mol2-Br_NBO.log --charge 3 --verbose --csv ex2_data 
 
@@ -144,15 +144,15 @@ o Disco DFT features:
 1  mol2-Br_NBO.log           3C  -0.24698
 ```
 
-* Example 3 - Specified by indexed atom `--charge 2,3,4,5,Br`: Tabulates by multiple indexed specied by atom type or index. ex3_data.csv gets saved in the working folder.
+* Example 3 - Specified by multiple atoms `--charge 2,3,4,5,Br` and grabbing additional descriptors like HOMO and LUMO `--mo both`, and Br-C bond distances `--distance Br,C` in Angstroms: Tabulates by multiple indexed specied by atom type or index. Dataframe, ex3_data.csv, gets saved in the working folder.
 
 <img src="/Users/Liliana/Research/Group/Scripts/GitHub/DISCO/Example_jupyter-notebook/Ex3_mols.png" style="margin:auto" width="500"/>
 
 ```
->>>python DISCO.py mol6-Br_NBO.log mol2-Br_NBO.log --charge 2,3,4,5,Br --csv ex3_data
+>>>python DISCO.py mol6-Br_NBO.log mol2-Br_NBO.log --charge 2,3,4,5,Br --mo both --distance Br,C --csv ex3_data
 
 o Disco DFT features: 
-               Name 2 atom index  2 charge 3 atom index  3 charge 4 atom index  4 charge 5 atom index  5 charge Br atom index  Br charge
-0  mol6-Br_NBO.log           2C  -0.08636           3C  -0.23470           4C  -0.16334           5C  -0.06443           1Br    0.04563
-1  mol2-Br_NBO.log           2C  -0.07746           3C  -0.24698           4C  -0.18143           5C  -0.21489           1Br    0.03987
+               Name 2 atom index  2 charge 3 atom index  3 charge 4 atom index  4 charge 5 atom index  5 charge Br atom index  Br charge    HOMO    LUMO  1Br-2C length
+0  mol6-Br_NBO.log           2C  -0.08636           3C  -0.23470           4C  -0.16334           5C  -0.06443           1Br    0.04563 -0.2970  0.0136        1.90515
+1  mol2-Br_NBO.log           2C  -0.07746           3C  -0.24698           4C  -0.18143           5C  -0.21489           1Br    0.03987 -0.3175  0.0506        1.90708
 ```
