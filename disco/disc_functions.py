@@ -80,7 +80,7 @@ def par_xyz_data(file):
     outfile = open(file, 'r')
     data = outfile.readlines()
     outfile.close()
-    if file.find("nbo".upper()) > -1 or file.find("nmr".upper())> -1 :
+    if file.find("nbo".upper()) > -1 or file.find("nmr".upper())> -1 or file.find("NBO".lower()) > -1 or file.find("NMR".lower())> -1 :
         # Get xyz data
         for i in range(0,len(data)):
             if data[i].find("Symbolic Z-matrix") > -1:
@@ -171,7 +171,7 @@ def nmr_shielding(file):
     data = outfile.readlines()
     outfile.close()
 
-    if file.find("nmr".upper()) > -1:
+    if file.find("nmr".upper()) > -1 or file.find("NMR".lower())> -1:
         # Get NMR shielding tensor data
         for i in range(0,len(data)):
             if data[i].find("shielding tensors") > -1:
@@ -220,7 +220,7 @@ def atom_charge(file):
     data = outfile.readlines()
     outfile.close()
 
-    if file.find("nbo".upper()) > -1:
+    if file.find("nbo".upper()) > -1 or file.find("NBO".lower()) > -1:
         # Get natural charge data
         for i in range(0,len(data)):
             if data[i].find("Natural Population Analysis") > -1:
@@ -258,7 +258,7 @@ def homo_lumo_values(file):
     data = outfile.readlines()
     outfile.close()
 
-    if file.find("nbo".upper()) > -1:
+    if file.find("nbo".upper()) > -1 or file.find("NBO".lower()) > -1:
         # Get LUMO energy data
         for j in range(0,len(data)):
             if data[j].find("Alpha virt. eigenvalues") > -1:
