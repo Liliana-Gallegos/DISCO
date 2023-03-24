@@ -146,7 +146,7 @@ o Disco DFT features:
 
 * Example 3 - Specified by indexed atom `--charge 2,3,4,5,Br`: Tabulates by multiple indexed specied by atom type or index. ex3_data.csv gets saved in the working folder.
 
-<img src="/Users/Liliana/Research/Group/Scripts/GitHub/DISCO/Example_jupyter-notebook/Ex3_mols.png" style="margin:auto" width="500"/>
+<img src="https://github.com/Liliana-Gallegos/DISCO/blob/master/Example_jupyter-notebook/Ex3_mols.png" style="margin:auto" width="500"/>
 
 ```
 >>>python DISCO.py mol6-Br_NBO.log mol2-Br_NBO.log --charge 2,3,4,5,Br --csv ex3_data
